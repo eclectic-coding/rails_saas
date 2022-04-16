@@ -1,15 +1,6 @@
-
-
-
-<div class="row">
-  <div class="col-sm-6">
-    <h1>Tenants</h1>
-  </div>
-
-  <div class="col-sm-6 text-end">
-  <%= link_to new_tenant_path, class: 'btn btn-primary' do %>
-    Add New Tenant
-  <% end %>
+<div class="row mb-3">
+  <div class="col-12">
+    <h1 class="h3 text-center">Tenants: <%= action_name.humanize %></h1>
   </div>
 </div>
 
@@ -17,25 +8,19 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-    
+        <th>ID</th>
         <th>Name</th>
-    
-
-            
       </tr>
     </thead>
-
     <tbody>
       <% @tenants.each do |tenant| %>
         <%= content_tag :tr, id: dom_id(tenant), class: dom_class(tenant) do %>
-          
-            <td><%= link_to tenant.name, tenant %></td>
-          
-
-          
-          
+            <td><%= link_to tenant.id, tenant %></td>
+            <td><%= tenant.name %></td>
         <% end %>
       <% end %>
     </tbody>
   </table>
 </div>
+
+<div><%= link_to "New Tenant", new_tenant_path %></div>
