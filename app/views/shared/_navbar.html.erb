@@ -23,6 +23,11 @@
             <% end %>
           </li>
           <li class="<%= 'active fw-bold' if current_page?(users_path) %> nav-item">
+            <%= link_to my_tenants_path, class: "nav-link" do %>
+              My Tenant
+            <% end %>
+          </li>
+          <li class="<%= 'active fw-bold' if current_page?(users_path) %> nav-item">
             <%= link_to new_tenant_path, class: "nav-link" do %>
               New Tenant
             <% end %>

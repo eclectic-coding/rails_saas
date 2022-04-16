@@ -4,6 +4,11 @@ class TenantsController < ApplicationController
   def index
     @tenants = Tenant.all
   end
+  
+  def my
+    @tenants = current_user.tenants
+    render "index"
+  end
 
   def show
   end
