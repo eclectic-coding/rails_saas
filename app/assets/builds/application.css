@@ -17868,3 +17868,109 @@ textarea.form-control-lg {
 .bi-filetype-xlsx::before {
   content: "\f793";
 }
+
+.console-prompt-label,
+.console-prompt-display,
+.console-message {
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.debug_dump {
+  width: 50%;
+  box-sizing: border-box;
+  background-color: #EFEFEF;
+  margin: 1rem 2rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.bg-purple {
+  background-color: #7952b3;
+}
+
+html {
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+}
+
+.dropdown {
+  z-index: 9999;
+}
+
+.dropdown-scrollable {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.dropdown-item:hover {
+  background-color: #9cccff !important;
+}
+
+li.active.rounded > a.nav-link {
+  color: var(--lightColor) !important;
+}
+
+:root {
+  --darkColor: #f7f7f7;
+  --darkBackground: #444;
+  --lightColor: #292b2c;
+  --lightBackground: #ccc;
+}
+
+body.light {
+  color: var(--lightColor);
+  background-color: #f8f0e6;
+}
+
+body.dark {
+  color: var(--darkColor);
+  background-color: #1f2c44;
+}
+
+body.light .card,
+footer.light {
+  color: var(--lightColor);
+  background-color: var(--lightBackground);
+}
+
+body.dark .card,
+footer.dark {
+  color: var(--darkColor);
+  background-color: var(--darkBackground);
+}
+
+body.dark a, body.dark a:visited,
+footer.dark a, footer.dark a:visited {
+  color: #e3e9ff !important;
+}
+
+body.dark a:hover, body.dark a:active,
+footer.dark a:hover, footer.dark a:active {
+  color: #ffffff !important;
+}
+
+li.active.rounded > a.nav-link,
+footer.dark a.active,
+body.dark a.active {
+  color: var(--lightColor) !important;
+}
+
+body.dark table a:visited,
+body.dark table a.sort_link,
+body.dark table a {
+  color: blue !important;
+}

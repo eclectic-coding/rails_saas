@@ -1,13 +1,50 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
     <%= link_to "SaaS App", root_path, class: "navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-          <li class="nav-link" >Fix</li>
-      </ul>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <% if current_user %>
+        <ul class="navbar-nav me-auto">
+          <li class="<%= 'active fw-bold' if current_page?(root_path) %> nav-item">
+            <%= link_to root_path, class: "nav-link" do %>
+              <i class="bi bi-house me-1"></i>Home
+            <% end %>
+          </li>
+          <li class="<%= 'active fw-bold' if current_page?(users_path) %> nav-item">
+            <%= link_to users_path, class: "nav-link" do %>
+              <i class="bi bi-people me-1"></i> Users
+            <% end %>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <%= link_to "#", id: "navbarDropdown", role: "button", class: "nav-link dropdown-toggle", data: { "bs-toggle": "dropdown" }, aria: { expanded: false } do %>
+            <%= current_user.email %>
+          <% end %>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li>
+              <%= link_to edit_user_registration_path, class: "dropdown-item #{'active' if current_page?(edit_user_registration_path)}" do %>
+                <i class="bi bi-gear me-2"></i> Account Settings
+              <% end %>
+            </li>
+            <li>
+              <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+                <i class="bi bi-box-arrow-left me-2"></i> Log out
+              <% end %>
+            </li>
+          </ul>
+        </ul>
+      <% else %>
+        <ul class="navbar-nav ms-auto">
+          <li class="<%= 'active fw-bold' if current_page?(new_user_registration_path) %> nav-item">
+            <%= link_to 'Register', new_user_registration_path, class: 'nav-link' %>
+          </li>
+          <li class="<%= 'active fw-bold' if current_page?(new_user_session_path) %> nav-item">
+            <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+          </li>
+        </ul>
+      <% end %>
     </div>
   </div>
 </nav>
