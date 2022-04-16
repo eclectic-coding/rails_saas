@@ -1,0 +1,33 @@
+<div class="row mb-3">
+  <div class="col-12">
+    <div class="d-flex justify-content-center align-items-center">
+      <h1 class="h3 text-center me-2">
+        Tenants: <%= action_name.humanize %>
+        <span class="badge bg-info"><%= @tenants.count %></span>
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Users</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tenants.each do |tenant| %>
+        <%= content_tag :tr, id: dom_id(tenant), class: dom_class(tenant) do %>
+          <td><%= link_to tenant.id, tenant %></td>
+          <td><%= tenant.name %></td>
+          <td><%= tenant.users.compact.join(', ') %></td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div><%= link_to "New Tenant", new_tenant_path %></div>

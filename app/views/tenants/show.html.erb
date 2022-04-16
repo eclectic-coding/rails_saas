@@ -1,0 +1,14 @@
+<div class="page-header">
+  <%= link_to tenants_path, class: 'btn btn-default' do %>
+    All Tenants
+  <% end %>
+  <%= link_to edit_tenant_path(@tenant), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show tenant</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @tenant.name %></dd>
+</dl>

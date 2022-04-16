@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-12">
+    <div class="d-flex justify-content-center align-items-center mb-3">
+      <h1 class="h3 me-2">
+        Members: <%= action_name.humanize %>
+        <span class="badge bg-info"><%= @members.count %></span>
+      </h1>
+    </div>
+  </div>
+</div>
+
+<% unless @members.empty? %>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Tenant</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @members.each do |member| %>
+          <%= content_tag :tr, id: dom_id(member), class: dom_class(member) do %>
+            <td><%= member.id %></td>
+            <td><%= member.user %></td>
+            <td><%= member.tenant %></td>
+            <td><%= link_to 'Show', member %></td>
+            <td><%= link_to 'Edit', edit_member_path(member) %></td>
+            <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<div><%= link_to "New Member", new_member_path, class: "ms-5" %></div>
