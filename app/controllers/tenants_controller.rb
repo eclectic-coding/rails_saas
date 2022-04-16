@@ -20,7 +20,9 @@ class TenantsController < ApplicationController
 
     respond_to do |format|
       if @tenant.save
-        format.html { redirect_to tenant_url(@tenant), notice: "Tenant was successfully created." }
+        # when a tenant is created, the creator becomes a member
+        @member = Member.create!(tenant: @tenant, user: current_user)
+        format.html { redirect_to @tenant, notice: "Tenant was successfully created." }
         format.json { render :show, status: :created, location: @tenant }
       else
         format.html { render :new, status: :unprocessable_entity }
