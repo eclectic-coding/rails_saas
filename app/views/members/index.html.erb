@@ -37,3 +37,8 @@
 <% end %>
 
 <div><%= link_to "New Member", new_member_path, class: "ms-5" %></div>
+
+<%= form_tag invite_members_path, method: :get do %>
+  <%= email_field_tag 'email' %>
+  <%= submit_tag("Invite a member") %>
+<% end %>

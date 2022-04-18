@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   resources :tenants do
     get :my, on: :collection
   end
-  resources :members
+
+  resources :members do
+    get :invite, on: :collection
+  end
 
   root 'home#index'
 end
