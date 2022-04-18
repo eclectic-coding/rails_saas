@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show] do
-    resources :tenants, only: :index
+    resources :tenants, only: :index # my nested controller
+    member do
+      patch :resend_invitation
+    end
   end
 
   resources :tenants do
