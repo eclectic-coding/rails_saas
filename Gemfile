@@ -15,6 +15,7 @@ gem "jbuilder"
 gem "redis", "~> 4.0"
 gem "faker", "~> 2.18"
 gem "simple_form"
+gem "devise_invitable"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "bootsnap", require: false
 
