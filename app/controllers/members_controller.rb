@@ -1,25 +1,39 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: %i[ show edit update destroy ]
+  before_action :set_member, only: %i[show edit update destroy]
 
-  # GET /members or /members.json
   def index
     @members = Member.all
   end
 
-  # GET /members/1 or /members/1.json
+  def invite
+    current_tenant = Tenant.first
+    email = params[:email]
+    user_from_email = User.where(email: email).first
+    if user_from_email.present? # user exists in the database
+      if Member.where(user: user_from_email, tenant: current_tenant).any? # user is a member in current_tenant
+        redirect_to members_path, alert: "The organization #{current_tenant.name} already has a user with the email #{email}"
+      else # user is not a member of current_tenant
+        Member.create!(user: user_from_email, tenant: current_tenant) # create member for existing user
+        redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
+        # send email that user was invited to this tenant
+      end
+    elsif user_from_email.nil? # invite new user to a tenant
+      new_user = User.invite!({ email: email }, current_user) # devise invitable create user and send email. invited_by current_user
+      Member.create!(user: new_user, tenant: current_tenant) # make new user part of this tenant
+      redirect_to members_path, notice: "#{email} was invited to join the tenant #{current_tenant.name}"
+    end
+  end
+
   def show
   end
 
-  # GET /members/new
   def new
     @member = Member.new
   end
 
-  # GET /members/1/edit
   def edit
   end
 
-  # POST /members or /members.json
   def create
     @member = Member.new(member_params)
 
@@ -34,7 +48,6 @@ class MembersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /members/1 or /members/1.json
   def update
     respond_to do |format|
       if @member.update(member_params)
@@ -47,7 +60,6 @@ class MembersController < ApplicationController
     end
   end
 
-  # DELETE /members/1 or /members/1.json
   def destroy
     @member.destroy
 
@@ -58,13 +70,12 @@ class MembersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_member
-      @member = Member.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def member_params
-      params.require(:member).permit(:user_id, :tenant_id)
-    end
+  def set_member
+    @member = Member.find(params[:id])
+  end
+
+  def member_params
+    params.require(:member).permit(:user_id, :tenant_id)
+  end
 end

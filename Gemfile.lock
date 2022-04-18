@@ -98,6 +98,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.6)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     diff-lcs (1.5.0)
     digest (3.1.0)
     docile (1.4.0)
@@ -335,6 +338,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.8)
+  devise_invitable
   factory_bot_rails (~> 6.2)
   faker (~> 2.18)
   fuubar (~> 2.5, >= 2.5.1)

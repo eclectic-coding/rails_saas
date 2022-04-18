@@ -2,7 +2,5 @@ class Member < ApplicationRecord
   belongs_to :user
   belongs_to :tenant
 
-  validates :tenant_id, presence: true
-  validates_uniqueness_of :user_id, scope: :tenant_id
-
+  validates :user_id, uniqueness: {scope: :tenant_id}
 end
