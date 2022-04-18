@@ -1,5 +1,5 @@
 module Users
-  class Tenants < ApplicationController
+  class TenantsController < ApplicationController
 
     def index
       @tenants = current_user.tenants
