@@ -14,7 +14,7 @@ gem "cssbundling-rails"
 gem "jbuilder"
 gem "redis", "~> 4.0"
 gem "faker", "~> 2.18"
-gem 'simple_form'
+gem "simple_form"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "bootsnap", require: false
 

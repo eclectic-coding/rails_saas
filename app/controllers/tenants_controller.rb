@@ -1,10 +1,10 @@
 class TenantsController < ApplicationController
-  before_action :set_tenant, only: %i[ show edit update destroy ]
+  before_action :set_tenant, only: %i[show edit update destroy]
 
   def index
     @tenants = Tenant.all
   end
-  
+
   def my
     @tenants = current_user.tenants
     render "index"
