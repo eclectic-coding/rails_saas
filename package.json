@@ -9,7 +9,7 @@
     "bootstrap-icons": "^1.9.1",
     "esbuild": "^0.14.53",
     "global": "^4.4.0",
-    "sass": "^1.54.0"
+    "sass": "^1.54.1"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
